@@ -1,3 +1,7 @@
+const uuidv4 = require('uuid/v4');
+const Network = require('./Network');
+const Synapse = require('./Synapse');
+const Sigmoid = require('./Sigmoid');
 
 /* Properties 
 public Guid Id { get; set; }
@@ -17,7 +21,7 @@ const sum = (arr, transform = x => x) => arr.reduce((acc, curr) => {
 class Neuron {
   /* optionally takes an array of Neurons */
     constructor(inputNeurons = null) {
-        this.Id = 0; /* TODO - lt: how to generate a Guid here? */
+        this.Id = uuidv4();
         this.InputSynapses = [];
         this.OutputSynapses = [];
         this.Bias = Network.GetRandom();
