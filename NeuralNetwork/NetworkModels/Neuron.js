@@ -40,27 +40,31 @@ class Neuron {
     }
 
     //Values & Weights
+    //public virtual double CalculateValue()
     CalculateValue() {
         const inputSynapsesValueSum = sum(this.InputSynapses, synapse => synapse.Weight * synapse.InputNeuron.Value);
         this.Value = Sigmoid.Output(inputSynapsesSum + this.Bias);
         return this.Value;
     }
 
+    //public double CalculateError(double target)
     CalculateError(target) {
         return target - this.Value;
     }
 
+    //public double CalculateGradient(double? target = null)
     CalculateGradient(target = null) {
         if (target === null) {
             const outputSynapsesGradientSum = sum(this.OutputSynapses, synapse => synapse.Weight * synapse.OutputNeuron.Gradient);
             this.Gradient = outputSynapsesGradientSum * Sigmoid.Derivative(this.Value);
         } else {
-            this.Gradient = this.CalculateError(target.Value) * Sigmoid.Derivative(this.Value);
+            this.Gradient = this.CalculateError(target) * Sigmoid.Derivative(this.Value);
         }
 
         return this.Gradient;
     }
 
+    //public void UpdateWeights(double learnRate, double momentum)
     UpdateWeights(learnRate, momentum) {
         let prevDelta = this.BiasDelta;
         this.BiasDelta = learnRate * this.Gradient;
