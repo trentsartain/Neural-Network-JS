@@ -43,7 +43,7 @@ class Neuron {
     //public virtual double CalculateValue()
     CalculateValue() {
         const inputSynapsesValueSum = sum(this.InputSynapses, synapse => synapse.Weight * synapse.InputNeuron.Value);
-        this.Value = Sigmoid.Output(inputSynapsesSum + this.Bias);
+        this.Value = Sigmoid.Output(inputSynapsesValueSum + this.Bias);
         return this.Value;
     }
 
