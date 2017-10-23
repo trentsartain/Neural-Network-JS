@@ -138,7 +138,7 @@ var Network = class Network {
 
     calculateError(...targets) {
         var i = 0;
-        return helpers.sum(this.outputLayer.map(a => Math.Abs(a.calculateError(targets[i++]))));
+        return helpers.sum(this.outputLayer, a => Math.Abs(a.calculateError(targets[i++])));
     }
 
     // -- Helpers --

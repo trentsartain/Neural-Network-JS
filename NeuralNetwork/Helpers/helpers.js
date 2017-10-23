@@ -1,8 +1,9 @@
 "use strict";
 
-
 // sum the numbers of an array
-const sum = (numArray) => numArray.reduce((a, b) =>  a + b );
+const sum = (arr, transform = x => x) => arr.reduce((acc, curr) => {
+  return acc + transform(curr);
+}, 0);
 module.exports.sum = sum;
 
 // get average of numbers in an array
